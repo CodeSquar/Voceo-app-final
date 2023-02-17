@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const cors = require("cors")
-const port = 5000
-app.set('port', process.env.PORT || port)
 
-app.use((cors()))
+const port = process.env.PORT || 5000;
+app.use(cors());
 
-const apiKey = process.env.API_URL
+const apiKey = process.env.API_KEY;
+
 app.get("/news/:country/:sortBy/:pagesize", async (req, res) => {
   try {
     const response = await axios.get(
@@ -19,4 +19,4 @@ app.get("/news/:country/:sortBy/:pagesize", async (req, res) => {
   }
 });
 
-app.listen(port, () => console.log(`running ${port}.`));
+module.exports = app;
