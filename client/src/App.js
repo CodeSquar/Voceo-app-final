@@ -226,7 +226,7 @@ console.log(loading)
                         
                   
             </div>) : null}
-            {!hasMorePages &&(
+            {!hasMorePages && !errorFetch &&(
               <div className="loading_section">
                 <h3 style={{ color: 'var(--main-color)' }}>Felicidades, llegaste al final de la pagina</h3>
               </div>
