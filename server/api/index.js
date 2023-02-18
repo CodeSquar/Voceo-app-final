@@ -4,7 +4,13 @@ const axios = require("axios");
 const cors = require("cors")
 
 const port = process.env.PORT || 5000;
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://voceo-app-final-p3fs.vercel.app/', 
+  optionsSuccessStatus: 200 
+}
+
+app.use(cors(corsOptions));
 
 const apiKey = process.env.API_URL;
 
