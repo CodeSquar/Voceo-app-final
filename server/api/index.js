@@ -6,7 +6,7 @@ const cors = require("cors")
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: 'https://voceo-app-final-p3fs.vercel.app', 
+  origin: 'https://voceonews.vercel.app', 
   optionsSuccessStatus: 200 
 }
 
