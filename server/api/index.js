@@ -6,7 +6,7 @@ const cors = require("cors")
 const port = process.env.PORT || 5000;
 app.use(cors());
 
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.API_URL;
 
 app.get("/news/:country/:sortBy/:pagesize", async (req, res) => {
   try {
