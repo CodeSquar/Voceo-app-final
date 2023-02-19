@@ -26,7 +26,7 @@ const NewsList = () => {
           setLoading(false);
           return;
         }
-        const response = await fetch(`https://vocenewsapi.vercel.app//news/${country}/${categorie}/${page}`);
+        const response = await fetch(`https://vocenewsapi.vercel.app/news/${country}/${categorie}/${page}`);
         const data = await response.json();
         const hasmore = Array.isArray(data) && data.length > 0;
         if (hasmore) {
