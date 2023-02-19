@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from "react";
 
 
-const FiltersSection = ({setPage, sethasMorePages,setCategorie,setCountry,setCountryes,countryes}) =>{
+const FiltersSection = ({setPage, sethasMorePages,setCategorie,setCountry,setCountryes,countryes,country}) =>{
     
 const [isDropdownCountryVisible, setIsDropdownCountryVisible] = useState(false);
 const [isDropdownCategoriebyVisible, setIsDropdownCategoriebyVisible] = useState(false);
@@ -61,16 +61,16 @@ useEffect(() => {
       </button>
       {isDropdownCountryVisible && (
         <div className="country_ul">
-          {countryes.map((country, index) => (
+          {countryes.map((countryitem, index) => (
             <button
-              className="country_select"
-              key={country.name + index}
+              className={`country_select${countryitem.code === country ? ' active-country' : ''}`}
+              key={countryitem.name + index}
               onClick={() => {
-                handleLanguageChange(country.code)
+                handleLanguageChange(countryitem.code)
 
               }}>
 
-              {country.name}
+              {countryitem.name}
             </button>
           ))}
         </div>
