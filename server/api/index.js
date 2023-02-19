@@ -26,3 +26,4 @@ app.get("/news/:country/:sortBy/:pagesize", async (req, res) => {
 });
 
 module.exports = app;
+app.listen(port, ()=>{console.log(`app running in ${port}`)})

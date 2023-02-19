@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Header from './header'
 import { useScrollPagination } from './scrollPagination';
+import FilterSection from './FiltersSection'
 
 const NewsList = () => {
-
-
-
-  const [news, setNews] = useState([]);
   const [countryes, setCountryes] = useState([])
   const storedCountry = localStorage.getItem('country');
-  const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
+const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
+  const [news, setNews] = useState([]);
   const storedCategorie = localStorage.getItem('categorie');
   const [categorie, setCategorie] = useState(storedCategorie ? storedCategorie : "general");
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMorePages, sethasMorePages] = useState(true)
   const [errorFetch, seterrorFetch] = useState(false)
-  console.log(loading)
+
   useEffect(() => {
     setLoading(true);
 
@@ -54,100 +52,24 @@ console.log(loading)
   /////////////////////////////////////////////////////////////////////////////////>>>>>>>>>>>
   useScrollPagination(page, setPage,loading)
 
-  useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        const response = await fetch('./countryes.json');
-        const data = await response.json();
-        setCountryes(data.countries);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchLanguages();
-
-  }, []);
+  
 
 
-  const [isDropdownCountryVisible, setIsDropdownCountryVisible] = useState(false);
-  const [isDropdownCategoriebyVisible, setIsDropdownCategoriebyVisible] = useState(false);
-
-  const toggleDropdownCountry = () => {
-    setIsDropdownCountryVisible(!isDropdownCountryVisible);
-    if (isDropdownCategoriebyVisible) {
-      setIsDropdownCategoriebyVisible(false);
-    }
-  };
-  const toggleDropdownCategorieby = () => {
-    setIsDropdownCategoriebyVisible(!isDropdownCategoriebyVisible);
-    if (isDropdownCountryVisible) {
-      setIsDropdownCountryVisible(false);
-    }
-  };
-  ////////country and categorie change//////////
-  const handleCategorieChange = (newCategorie) => {
-    setCategorie(newCategorie)
-    localStorage.setItem('categorie', newCategorie);
-    setPage(1)
-    sethasMorePages(true)
-    isDropdownCategoriebyVisible(false)
-  }
-  const handleLanguageChange = (newLanguage) => {
-    setCountry(newLanguage);
-    localStorage.setItem('country', newLanguage);
-    setPage(1)
-    sethasMorePages(true)
-    setIsDropdownCountryVisible(false)
-
-  };
   return (
     <div className="allcontent">
       <Header />
       <main className="main_content_container">
         <div className="main_content_wrapper">
           <div className="filters_container">
-            <div className='main_filters'>
-              <div className="country_filter_container">
-                <button className="country_filter" onClick={toggleDropdownCountry}>Country<img src="images/right-svgrepo-com.svg" alt=""></img>
-
-                </button>
-                {isDropdownCountryVisible && (
-                  <div className="country_ul">
-                    {countryes.map((country, index) => (
-                      <button
-                        className="country_select"
-                        key={country.name + index}
-                        onClick={() => {
-                          handleLanguageChange(country.code)
-
-                        }}>
-
-                        {country.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div className="country_filter_container">
-                <button className="country_filter" onClick={toggleDropdownCategorieby}>Categorie<img src="images/right-svgrepo-com.svg" alt=""></img>
-
-                </button>
-                {isDropdownCategoriebyVisible && (
-                  <div className="country_ul">
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('business')}>business</button>
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('entertainment')}>entertainment</button>
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('general')}>General</button>
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('health')}>health</button>
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('science')}>science</button>
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('sports')}>sports</button>
-                    <button type='button' className="country_select" onClick={() => handleCategorieChange('technology')}>technology</button>
-
-                  </div>
-
-                )}
-               
-              </div>
-            </div>
+            <FilterSection 
+            setPage={setPage}
+            sethasMorePages={sethasMorePages}
+            setCategorie={setCategorie}
+            setCountry={setCountry}
+            setCountryes={setCountryes}
+            countryes={countryes}
+            country={country}
+            />
             <div className="searchbar_wrapper">
               <input placeholder="Search your own" type="text" className="searchbar_filter"></input>
 
