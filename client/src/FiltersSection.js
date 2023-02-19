@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from "react";
 
 
-const FiltersSection = ({setPage, sethasMorePages,setCategorie,setCountry,setCountryes,countryes,country}) =>{
+const FiltersSection = ({setPage, sethasMorePages,setCategorie,categorie,setCountry,setCountryes,countryes,country,categories,setcategories}) =>{
     
 const [isDropdownCountryVisible, setIsDropdownCountryVisible] = useState(false);
 const [isDropdownCategoriebyVisible, setIsDropdownCategoriebyVisible] = useState(false);
@@ -53,6 +53,22 @@ useEffect(() => {
 
   }, []);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('./categories.json');
+        const data = await response.json();
+        console.log(data)
+        setcategories(data.categories);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCategories();
+
+  }, []);
+
  return(
     <div className='main_filters'>
     <div className="country_filter_container">
@@ -91,6 +107,23 @@ useEffect(() => {
           <button type='button' className="country_select" onClick={() => handleCategorieChange('technology')}>technology</button>
 
         </div>
+
+      )}
+      {isDropdownCategoriebyVisible && (
+        <div className="country_ul">
+        {categories.map((categorieitem, index) => (
+          <button
+            className={`country_select${categorieitem.name === categorie ? ' active-country' : ''}`}
+            key={categorieitem.name + index}
+            onClick={() => {
+              handleCategorieChange(categorieitem.name)
+
+            }}>
+
+            {categorieitem.name}
+          </button>
+        ))}
+      </div>
 
       )}
      

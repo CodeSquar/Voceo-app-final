@@ -1,0 +1,11 @@
+{
+    "categories":[
+        { "name": "business" },
+        { "name": "entertainment" },
+        { "name": "General" },
+        { "name": "health" },
+        { "name": "science" },
+        { "name": "sports" },
+        { "name": "technology" }
+      ]
+}

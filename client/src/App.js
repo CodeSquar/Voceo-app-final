@@ -9,6 +9,7 @@ const NewsList = () => {
   const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
   const [news, setNews] = useState([]);
   const storedCategorie = localStorage.getItem('categorie');
+  const [categories, setcategories] = useState([])
   const [categorie, setCategorie] = useState(storedCategorie ? storedCategorie : "general");
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -64,6 +65,9 @@ const NewsList = () => {
               setCountryes={setCountryes}
               countryes={countryes}
               country={country}
+              categorie={categorie}
+              categories={categories}
+              setcategories={setcategories}
             />
             <div className="searchbar_wrapper">
               <input placeholder="Search your own" type="text" className="searchbar_filter"></input>
