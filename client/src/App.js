@@ -6,7 +6,7 @@ import FilterSection from './FiltersSection'
 const NewsList = () => {
   const [countryes, setCountryes] = useState([])
   const storedCountry = localStorage.getItem('country');
-const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
+  const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
   const [news, setNews] = useState([]);
   const storedCategorie = localStorage.getItem('categorie');
   const [categorie, setCategorie] = useState(storedCategorie ? storedCategorie : "general");
@@ -17,7 +17,6 @@ const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
 
   useEffect(() => {
     setLoading(true);
-
     const fetchNews = async () => {
       try {
         if (!hasMorePages) {
@@ -44,16 +43,12 @@ const [country, setCountry] = useState(storedCountry ? storedCountry : "us")
       setLoading(false);
     };
 
-
     fetchNews();
   }, [country, categorie, page, hasMorePages, errorFetch]);
-console.log(loading)
+  console.log(loading)
 
   /////////////////////////////////////////////////////////////////////////////////>>>>>>>>>>>
-  useScrollPagination(page, setPage,loading)
-
-  
-
+  useScrollPagination(page, setPage, loading)
 
   return (
     <div className="allcontent">
@@ -61,45 +56,38 @@ console.log(loading)
       <main className="main_content_container">
         <div className="main_content_wrapper">
           <div className="filters_container">
-            <FilterSection 
-            setPage={setPage}
-            sethasMorePages={sethasMorePages}
-            setCategorie={setCategorie}
-            setCountry={setCountry}
-            setCountryes={setCountryes}
-            countryes={countryes}
-            country={country}
+            <FilterSection
+              setPage={setPage}
+              sethasMorePages={sethasMorePages}
+              setCategorie={setCategorie}
+              setCountry={setCountry}
+              setCountryes={setCountryes}
+              countryes={countryes}
+              country={country}
             />
             <div className="searchbar_wrapper">
               <input placeholder="Search your own" type="text" className="searchbar_filter"></input>
 
               <img src="images/search-icon.svg" alt=""></img>
             </div>
-
           </div>
           {page === 1 && !hasMorePages && !errorFetch && (
             <div className="loading_section">
               <h3 style={{ color: 'red' }}>No hay noticias para mostrar <br></br>
-            Posiblemente no hay noticias sobre este pais o categoria, intenta cambiar de pais/categoria y/o recargar la pagina.
-          </h3>
+                Posiblemente no hay noticias sobre este pais o categoria, intenta cambiar de pais/categoria y/o recargar la pagina.
+              </h3>
             </div>
-            
-          )
-          
-          }
+          )}
 
           {errorFetch && !loading && (
             <div className="loading_section">
               <h3 style={{ color: 'red' }}>Error al intentar conectar con el servidor</h3>
             </div>
           )}
-
           {loading && (
             <div className="news_grid">
               {Array.from({ length: 20 }).map((_, index) => (
                 <div className='skeleton_item' key={index}></div>
-
-
               ))}
             </div>
           )}
@@ -107,7 +95,6 @@ console.log(loading)
             <div className="news_grid">
               {news.map((newItem, index) => (
                 newItem.urlToImage !== null && (
-
                   <a href={newItem.url} className="new_item" key={newItem.title + index}>
                     <div className="img_wrapper">
                       <img
@@ -136,24 +123,16 @@ console.log(loading)
                     </div>
                   </a>)))}
               {loading && page > 1 && (
-               
-                  Array.from({ length: 20 }).map((_, index) => (
-                    <div className='skeleton_item' key={index}></div>
-
-
-                  ))
-               
+                Array.from({ length: 20 }).map((_, index) => (
+                  <div className='skeleton_item' key={index}></div>
+                ))
               )}
-          
-                        
-                  
             </div>) : null}
-            {!hasMorePages && !errorFetch &&(
-              <div className="loading_section">
-                <h3 style={{ color: 'var(--main-color)' }}>Felicidades, llegaste al final de la pagina</h3>
-              </div>
-            )}
-
+          {!hasMorePages && !errorFetch && (
+            <div className="loading_section">
+              <h3 style={{ color: 'var(--main-color)' }}>Felicidades, llegaste al final de la pagina</h3>
+            </div>
+          )}
         </div>
       </main>
     </div>
