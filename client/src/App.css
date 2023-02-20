@@ -35,7 +35,7 @@ html{
   width: 100%;
   max-width: 1500px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .header_logo {
@@ -173,7 +173,7 @@ margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   margin-top: 24px;
-  gap: 48px 24px;
+  gap:24px;
 
   filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.06));
 }
@@ -352,6 +352,9 @@ background-color: rgba(71, 86, 202, 0.06);
 }
 @media (max-width:500px) {
   .main_content_container {
-      padding: 0px 12px;
+      padding: 0px 12px 48px;
+  }
+  .header_container{
+    padding: 24px 12px;
   }
 }
