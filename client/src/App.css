@@ -173,8 +173,7 @@ margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   margin-top: 24px;
-  gap:24px;
-
+  gap:12px;
   filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.06));
 }
 
@@ -194,7 +193,7 @@ margin-top: 24px;
 }
 .img_wrapper{
   display: flex;
-  border-radius: 24px;
+  border-radius: 6px;
   width: 100%;
   position: relative;
   aspect-ratio: 16/9;
