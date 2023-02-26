@@ -98,7 +98,7 @@ const NewsList = () => {
           {!loading || page > 1 ? (
             <div className="news_grid">
               {news.map((newItem, index) => (
-                newItem.urlToImage !== null && (
+               
                   <a href={newItem.url} className="new_item" key={newItem.title + index}>
                     <div className="img_wrapper">
                       <img
@@ -125,7 +125,7 @@ const NewsList = () => {
                       <h2 className="new_title">{newItem.title}</h2>
                       <h3 className="new_source">{newItem.source.name}</h3>
                     </div>
-                  </a>)))}
+                  </a>))}
               {loading && page > 1 && (
                 Array.from({ length: 20 }).map((_, index) => (
                   <div className='skeleton_item' key={index}></div>
